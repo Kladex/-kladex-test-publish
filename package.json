@@ -7,6 +7,19 @@
   "files": [
     "lib/**/*"
   ],
+  "keywords": [
+    "npm",
+    "javascript",
+    "typescript",
+    "esm",
+    "cjs",
+    "nodejs",
+    "commonjs",
+    "ecmascript",
+    "beginner",
+    "example",
+    "demonstration"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/Kladex/test-publish"
@@ -26,7 +39,8 @@
     "build": "npm run clean && npm run build:esm && npm run build:cjs",
     "build:esm": "tsc -p ./configs/tsconfig.esm.json && mv lib/esm/index.js lib/esm/index.mjs",
     "build:cjs": "tsc -p ./configs/tsconfig.cjs.json",
-    "prepack": "npm run build"
+    "prepack": "npm run build",
+    "semantic-release": "semantic-release"
   },
   "author": "kladex",
   "license": "MIT",
@@ -53,6 +67,7 @@
     "jest": "^27.5.1",
     "ts-node": "^10.9.1",
     "tsconfig-paths": "^4.0.0",
-    "typescript": "^4.8.3"
+    "typescript": "^4.8.3",
+    "semantic-release": "^19.0.3"
   }
 }
