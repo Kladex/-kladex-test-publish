@@ -1,5 +1,5 @@
 {
-  "name": "test-npm-package",
+  "name": "@kladex/test-publish",
   "main": "main.js",
   "scripts": {
     "dev": "ts-node ./src/main.ts",
