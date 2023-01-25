@@ -1,19 +1,53 @@
 {
   "name": "@kladex/test-publish",
-  "main": "main.js",
-  "scripts": {
-    "dev": "ts-node ./src/main.ts",
-    "test": "jest __tests__/"
+  "main": "./lib/cjs/index.js",
+  "types": "./lib/cjs/types/index.d.ts",
+  "version": "1.0.0",
+  "description": "This is a test package",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Kladex/test-publish"
   },
+  "release": {
+    "branches": [
+      "main"
+    ]
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "dev": "ts-node ./src/index.ts",
+    "test": "jest __tests__/",
+    "clean": "rm -rf ./lib",
+    "build": "npm run clean && npm run build:esm && npm run build:cjs",
+    "build:esm": "tsc -p ./configs/tsconfig.esm.json && mv lib/esm/index.js lib/esm/index.mjs",
+    "build:cjs": "tsc -p ./configs/tsconfig.cjs.json",
+    "prepack": "npm run build"
+  },
+  "author": "kladex",
+  "license": "MIT",
   "jest": {
     "testEnvironment": "node",
     "transform": {
       "^.+\\.tsx?$": "ts-jest"
     }
   },
-  "dependencies": {
-    "yargs": "^17.5.1"
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./lib/esm/types/index.d.ts",
+        "default": "./lib/esm/index.mjs"
+      },
+      "require": {
+        "types": "./lib/cjs/types/index.d.ts",
+        "default": "./lib/cjs/index.js"
+      }
+    }
   },
+  "files": [
+    "lib/**/*"
+  ],
   "devDependencies": {
     "@types/jest": "^29.0.3",
     "jest": "^27.5.1",
